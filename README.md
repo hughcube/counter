@@ -1,6 +1,6 @@
 <h1 align="center"> counter </h1>
 
-<p align="center"> .</p>
+counter [![Build Status](https://travis-ci.com/hughcube/counter.svg?branch=master)](https://travis-ci.com/hughcube/counter)
 
 
 ## Installing

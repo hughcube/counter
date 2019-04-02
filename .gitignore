@@ -1,3 +1,4 @@
+phpunit.xml*
 .idea
 *.DS_Store
 /vendor

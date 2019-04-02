@@ -7,6 +7,7 @@ use HughCube\Counter\Counter;
 use HughCube\Counter\CounterInterface;
 use HughCube\Counter\Exceptions\ExceptionInterface;
 use HughCube\Counter\Exceptions\StorageException;
+use Mockery;
 use PHPUnit\Framework\TestCase;
 
 class CounterTest extends TestCase
@@ -24,31 +25,26 @@ class CounterTest extends TestCase
 
     public function testThrowException()
     {
-        $exceptionMock = $this->getMock(ArrayStorage::class);
+        /** @var ArrayStorage|\Mockery\MockInterface $user */
+        $exceptionMock = Mockery::mock(ArrayStorage::class);
 
-        $exceptionMock->expects($this->any())
-            ->method('incr')
-            ->will($this->throwException(new \Exception('incr')));
+        $exceptionMock->shouldReceive('incr')
+            ->andThrowExceptions([new \Exception('incr')]);
 
-        $exceptionMock->expects($this->any())
-            ->method('decr')
-            ->will($this->throwException(new \Exception('decr')));
+        $exceptionMock->shouldReceive('decr')
+            ->andThrowExceptions([new \Exception('decr')]);
 
-        $exceptionMock->expects($this->any())
-            ->method('set')
-            ->will($this->throwException(new \Exception('set')));
+        $exceptionMock->shouldReceive('set')
+            ->andThrowExceptions([new \Exception('set')]);
 
-        $exceptionMock->expects($this->any())
-            ->method('getMultiple')
-            ->will($this->throwException(new \Exception('getMultiple')));
+        $exceptionMock->shouldReceive('getMultiple')
+            ->andThrowExceptions([new \Exception('getMultiple')]);
 
-        $exceptionMock->expects($this->any())
-            ->method('get')
-            ->will($this->throwException(new \Exception('get')));
+        $exceptionMock->shouldReceive('get')
+            ->andThrowExceptions([new \Exception('get')]);
 
-        $exceptionMock->expects($this->any())
-            ->method('has')
-            ->will($this->throwException(new \Exception('has')));
+        $exceptionMock->shouldReceive('has')
+            ->andThrowExceptions([new \Exception('has')]);
 
 
         /** @var Counter $counter */
